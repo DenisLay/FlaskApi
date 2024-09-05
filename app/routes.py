@@ -19,7 +19,7 @@ def help():
 def req():
     return f'<h1>Request</h1>'
 
-@app.route("/check", methods=["GET"])
+@main.route("/check", methods=["GET"])
 @cross_origin()
 def check():
     return {
