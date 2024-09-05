@@ -9,3 +9,7 @@ def index():
 @main.route('/help')
 def help():
     return f'<h1>Help</h1>'
+
+@main.route('/req')
+def help():
+    return f'<h1>Request</h1>'
