@@ -11,5 +11,5 @@ def help():
     return f'<h1>Help</h1>'
 
 @main.route('/req')
-def help():
+def req():
     return f'<h1>Request</h1>'
