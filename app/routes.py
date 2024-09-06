@@ -1,4 +1,4 @@
-from flask import Blueprint
+from flask import Blueprint, request
 from flask_cors import CORS, cross_origin
 import requests
 
@@ -18,23 +18,16 @@ def help():
 @main.route('/req', methods=["POST"])
 @cross_origin()
 def req():
-    #data = request.form
+    try:
+        data = request.json
+        page = requests.get(data.get('link'))
 
-    return {
-        "data": request.args.get('lang')
-    }
-
-    # url = 'https://olx.ua'
-
-    #try:
-    #    page = requests.get(url)
-
-    #    if not page.status_code == 200:
-    #        return f'status code: {page.status_code}'
-    #    else:
-    #        return f'{page.text}'
-    #except Exception as e:
-    #    return str(e)
+        if not page.status_code == 200:
+            return f'status code: {page.status_code}'
+        else:
+            return f'{page.text}'
+    except Exception as e:
+        return str(e)
 
 @main.route("/check", methods=["GET"])
 @cross_origin()
