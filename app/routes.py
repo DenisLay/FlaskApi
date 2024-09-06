@@ -18,10 +18,10 @@ def help():
 @main.route('/req', methods=["POST"])
 @cross_origin()
 def req():
-    data = request.form
+    #data = request.form
 
     return {
-        "data": data
+        "data": "data"
     }
 
     # url = 'https://olx.ua'
