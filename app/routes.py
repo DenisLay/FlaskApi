@@ -21,7 +21,7 @@ def req():
     #data = request.form
 
     return {
-        "data": "data"
+        "data": request.args.get('lang')
     }
 
     # url = 'https://olx.ua'
