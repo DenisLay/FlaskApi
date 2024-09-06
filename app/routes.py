@@ -15,20 +15,26 @@ def index():
 def help():
     return f'<h1>Help</h1>'
 
-@main.route('/req', methods=["GET"])
+@main.route('/req', methods=["POST"])
 @cross_origin()
 def req():
-    url = 'https://olx.ua'
+    data = request.form
 
-    try:
-        page = requests.get(url)
+    return {
+        "data": data
+    }
 
-        if not page.status_code == 200:
-            return f'status code: {page.status_code}'
-        else:
-            return f'{page.text}'
-    except Exception as e:
-        return str(e)
+    # url = 'https://olx.ua'
+
+    #try:
+    #    page = requests.get(url)
+
+    #    if not page.status_code == 200:
+    #        return f'status code: {page.status_code}'
+    #    else:
+    #        return f'{page.text}'
+    #except Exception as e:
+    #    return str(e)
 
 @main.route("/check", methods=["GET"])
 @cross_origin()
