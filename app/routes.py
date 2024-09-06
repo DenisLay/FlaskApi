@@ -1,5 +1,6 @@
-from flask import Blueprint, redirect, url_for
+from flask import Blueprint
 from flask_cors import CORS, cross_origin
+import requests
 
 main = Blueprint('main', 'api')
 cors = CORS(main, resources={r"/*": {"origins": "http://localhost:3000"}}) #Add your url of project here
@@ -17,7 +18,17 @@ def help():
 @main.route('/req', methods=["GET"])
 @cross_origin()
 def req():
-    return f'<h1>Request</h1>'
+    url = 'https://olx.ua'
+
+    try:
+        page = requests.get(url)
+
+        if not page.status_code == 200:
+            return f'status code: {page.status_code}'
+        else:
+            return f'{page.text}'
+    except Exception as e:
+        return str(e)
 
 @main.route("/check", methods=["GET"])
 @cross_origin()
